@@ -3,16 +3,18 @@ package com.magiworld.services;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 import com.magiworld.classes.Guerrier;
+import com.magiworld.classes.Joueur;
 import com.magiworld.classes.Mage;
 import com.magiworld.classes.Personnage;
 import com.magiworld.classes.Rodeur;
 import com.magiworld.interfaces.IService;
 
 public class Service implements IService {
-	public static HashMap<String, Personnage> joueur = new HashMap();
+	public static HashMap<String, Joueur> joueurs = new HashMap();
 	public List code = new ArrayList();
 
 	@Override
@@ -21,54 +23,55 @@ public class Service implements IService {
 		Scanner scanner = new Scanner(System.in);
 		String nomJoueur = "Woarg";
 		for (int i = 1; i < 3; i++) {
-			Personnage personnage = new Personnage();
-			personnage.setAgilite(0);
-			personnage.setIntelligence(0);
+			Joueur joueur = new Joueur();
+			joueur.setAgilite(0);
+			joueur.setIntelligence(0);
+			joueur.setNumero(i);
+			joueur.setNom(nomJoueur);
 			int niveau = 0;
 			int classe = 0;
 			System.out.println("Création du personnage du joueur " + i);
 
 			do {
 				System.out
-						.println("Veuillez choisir la clsse de votre personnage (1 : Guerrier, 2: Rodeur, 3 : Mage)");
+						.println("Veuillez choisir la classe de votre personnage (1 : Guerrier, 2: Rodeur, 3 : Mage)");
 				classe = scanner.nextInt();
-				personnage.setClasse(distinguerPersonnage(classe));
+				joueur.setClasse(distinguerPersonnage(classe));
 
 			} while (classe < 0 || classe > 4);
 
 			do {
 				System.out.println("Niveau du personnage");
 				niveau = scanner.nextInt();
-				personnage.setNiveau(niveau);
-				personnage.setVie(niveau * 5);
+				joueur.setNiveau(niveau);
+				joueur.setVie(niveau * 5);
 
-			} while (personnage.getNiveau() < 1 || personnage.getNiveau() > 100);
+			} while (joueur.getNiveau() < 1 || joueur.getNiveau() > 100);
 
 			do {
 				System.out.println("Force du personnage");
-				personnage.setForce(scanner.nextInt());
-			} while (personnage.getForce() < 0 || personnage.getForce() > 100);
+				joueur.setForce(scanner.nextInt());
+			} while (joueur.getForce() < 0 || joueur.getForce() > 100);
 
 			do {
 				System.out.println("Agilité du personnage");
-				personnage.setAgilite(scanner.nextInt());
-			} while (personnage.getAgilite() < 0
-					|| !totalForceAgiliteIntelligence(personnage));
+				joueur.setAgilite(scanner.nextInt());
+			} while (joueur.getAgilite() < 0
+					|| !totalForceAgiliteIntelligence(joueur));
 
 			do {
 				System.out.println("Intelligence du personnage");
-				personnage.setIntelligence(scanner.nextInt());
-			} while (personnage.getIntelligence() < 0
-					|| !totalForceAgiliteIntelligence(personnage));
-			System.out.println(nomJoueur + " je suis le "
-					+ personnage.getClasse() + " joueur " + i + " niveau "
-					+ personnage.getNiveau() + " je possède "
-					+ personnage.getVie() + " de vitalité, "
-					+ personnage.getForce() + " de force, "
-					+ personnage.getAgilite() + " d'agilité et "
-					+ personnage.getIntelligence() + " d'intelligence!");
+				joueur.setIntelligence(scanner.nextInt());
+			} while (joueur.getIntelligence() < 0
+					|| !totalForceAgiliteIntelligence(joueur));
+			System.out.println(nomJoueur + " je suis le " + joueur.getClasse()
+					+ " joueur " + i + " niveau " + joueur.getNiveau()
+					+ " je possède " + joueur.getVie() + " de vitalité, "
+					+ joueur.getForce() + " de force, " + joueur.getAgilite()
+					+ " d'agilité et " + joueur.getIntelligence()
+					+ " d'intelligence!");
 
-			joueur.put(nomJoueur, personnage);
+			joueurs.put(nomJoueur, joueur);
 			nomJoueur = "Abracadabra";
 		}
 	}
@@ -105,34 +108,34 @@ public class Service implements IService {
 		Scanner scanner = new Scanner(System.in);
 		int vitalite = 0;
 		do {
-			for (int i = 0; i < joueur.size(); i++) {
-				Personnage personnage = (Personnage) joueur.values();
+			for (Map.Entry joueur : joueurs.entrySet()) {
+				Joueur joueurss = (Joueur) joueur.getValue();
 				System.out
 						.println("Joueur "
-								+ (i + 1)
+								+ joueurss.getNumero()
 								+ " ("
-								+ personnage.getVie()
+								+ joueurss.getVie()
 								+ ")"
 								+ " Veuillez choisir votre action(1: Attaque Basique, 2: Attaque Spéciale)");
 				int action = scanner.nextInt();
 				if (action == 1) {
-					if (personnage.getClasse().equals("Guerrier")) {
+					if (joueurss.getClasse().equals("Guerrier")) {
 						Guerrier guerrier = new Guerrier();
 						vitalite = guerrier.attaqueBasique("Abracadabra",
-								joueur, "Woarg");
+								joueurs, "Woarg");
 						System.out.println("Valeur action : Guerrier");
 						System.out.println("Vitalite: " + vitalite);
 					}
-					if (personnage.getClasse().equals("Rodeur")) {
+					if (joueurss.getClasse().equals("Rodeur")) {
 						Rodeur rodeur = new Rodeur();
-						vitalite = rodeur.attaqueBasique("Abracadabra", joueur,
-								"Woarg");
+						vitalite = rodeur.attaqueBasique("Abracadabra",
+								joueurs, "Woarg");
 						System.out.println("Valeur action : Rodeur");
 						System.out.println("Vitalite: " + vitalite);
 					}
-					if (personnage.getClasse().equals("Mage")) {
+					if (joueurss.getClasse().equals("Mage")) {
 						Mage mage = new Mage();
-						vitalite = mage.attaqueBasique("Abracadabra", joueur,
+						vitalite = mage.attaqueBasique("Abracadabra", joueurs,
 								"Woarg");
 						System.out.println("Valeur action : Mage");
 						System.out.println("Vitalite: " + vitalite);
@@ -144,13 +147,72 @@ public class Service implements IService {
 
 	}
 
-	private int nouvelleVitalite(String cle) {
-		int vitalite = 0;
-		Personnage personnage = joueur.get(cle);
-		if (personnage != null) {
-			// personnage.setVie(vie);
-		}
-		return vitalite;
-	}
+	// private int nouvelleVitalite(String cle) {
+	// int vitalite = 0;
+	// Personnage personnage = joueur.get(cle);
+	// if (personnage != null) {
+	// // personnage.setVie(vie);
+	// }
+	// return vitalite;
+	// }
 
+	public void listing() {
+		Scanner scanner = new Scanner(System.in);
+		List<Joueur> liste = new ArrayList();
+		int numeroClasse = 0;
+		for (Map.Entry entree : joueurs.entrySet()) {
+			Joueur joueur = (Joueur) entree.getValue();
+			System.out.println("Numero" + joueur.getNumero());
+			// a = scanner.nextInt();
+			liste.add(joueur);
+
+		}
+
+		int vitalite = 0;
+
+		do {
+			int i = 1;
+			int y = 0;
+			while (i >= 0 && y <= 1) {
+				System.out
+						.println("Joueur "
+								+ liste.get(i).getNumero()
+								+ " ("
+								+ liste.get(i).getVie()
+								+ ")"
+								+ " Veuillez choisir votre action(1: Attaque Basique, 2: Attaque Spéciale)");
+				System.out.println("Classe:   " + liste.get(i).getClasse());
+				numeroClasse = scanner.nextInt();
+				if (liste.get(i).getClasse().equals("Guerrier")) {
+					System.out.println("Classe:   " + liste.get(i).getClasse());
+					Guerrier guerrier = new Guerrier();
+					if (numeroClasse == 1) {
+						vitalite = guerrier.attaqueBasique(liste.get(y)
+								.getNom(), joueurs, liste.get(i).getNom());
+					}
+
+				}
+				if (liste.get(i).getClasse().equals("Rodeur")) {
+					System.out.println("Classe:   " + liste.get(i).getClasse());
+					if (numeroClasse == 1) {
+						Rodeur rodeur = new Rodeur();
+						vitalite = rodeur.attaqueBasique(liste.get(y).getNom(),
+								joueurs, liste.get(i).getNom());
+					}
+
+				}
+				if (liste.get(i).getClasse().equals("Mage")) {
+					System.out.println("Classe:   " + liste.get(i).getClasse());
+					Mage mage = new Mage();
+					if (numeroClasse == 1) {
+						vitalite = mage.attaqueBasique(liste.get(y).getNom(),
+								joueurs, liste.get(i).getNom());
+					}
+				}
+
+				y++;
+				i--;
+			}
+		} while (vitalite > 0 || vitalite != 0);
+	}
 }

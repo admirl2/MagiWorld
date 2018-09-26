@@ -15,8 +15,8 @@ public class Guerrier implements Attaque {
 	@Override
 	public int attaqueBasique(String joueurAdverse, HashMap tab, String joueur) {
 		// TODO Auto-generated method stub
-		Personnage personnage = (Personnage) tab.get(joueur);
 		Personnage personnage1 = (Personnage) tab.get(joueurAdverse);
+		Personnage personnage = (Personnage) tab.get(joueur);
 		int vitalite = 0;
 		vitalite = (personnage1.getVie() - personnage.getForce());
 		personnage1.setVie(vitalite);
