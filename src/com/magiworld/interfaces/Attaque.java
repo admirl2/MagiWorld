@@ -3,7 +3,7 @@ package com.magiworld.interfaces;
 import java.util.HashMap;
 
 public interface Attaque {
-	void attaqueSpecial();
+	int attaqueSpeciale(String joueurAdverse, HashMap tab, String joueur);
 
-	int attaqueBasique(String joueur, HashMap tab, String cle);
+	int attaqueBasique(String joueurAdverse, HashMap tab, String joueur);
 }

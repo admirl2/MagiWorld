@@ -162,18 +162,21 @@ public class Service implements IService {
 		int numeroClasse = 0;
 		for (Map.Entry entree : joueurs.entrySet()) {
 			Joueur joueur = (Joueur) entree.getValue();
-			System.out.println("Numero" + joueur.getNumero());
+			// System.out.println("Numero" + joueur.getNumero());
 			// a = scanner.nextInt();
 			liste.add(joueur);
 
 		}
 
-		int vitalite = 0;
+		int vitalite = -1;
+		// boolean vitaliteNull = false;
 
-		do {
+		while (vitalite == -1 || vitalite > 0) {
+			System.out.println("Vitalite premier while " + vitalite);
 			int i = 1;
 			int y = 0;
 			while (i >= 0 && y <= 1) {
+
 				System.out
 						.println("Joueur "
 								+ liste.get(i).getNumero()
@@ -181,38 +184,57 @@ public class Service implements IService {
 								+ liste.get(i).getVie()
 								+ ")"
 								+ " Veuillez choisir votre action(1: Attaque Basique, 2: Attaque Spéciale)");
-				System.out.println("Classe:   " + liste.get(i).getClasse());
+				// System.out.println("Classe:   " + liste.get(i).getClasse());
 				numeroClasse = scanner.nextInt();
 				if (liste.get(i).getClasse().equals("Guerrier")) {
-					System.out.println("Classe:   " + liste.get(i).getClasse());
+					// System.out.println("Classe:   " +
+					// liste.get(i).getClasse());
 					Guerrier guerrier = new Guerrier();
 					if (numeroClasse == 1) {
 						vitalite = guerrier.attaqueBasique(liste.get(y)
 								.getNom(), joueurs, liste.get(i).getNom());
 					}
+					if (numeroClasse == 2) {
+						vitalite = guerrier.attaqueSpeciale(liste.get(y)
+								.getNom(), joueurs, liste.get(i).getNom());
+					}
 
 				}
 				if (liste.get(i).getClasse().equals("Rodeur")) {
-					System.out.println("Classe:   " + liste.get(i).getClasse());
+					// System.out.println("Classe:   " +
+					// liste.get(i).getClasse());
 					if (numeroClasse == 1) {
 						Rodeur rodeur = new Rodeur();
 						vitalite = rodeur.attaqueBasique(liste.get(y).getNom(),
 								joueurs, liste.get(i).getNom());
 					}
+					if (numeroClasse == 2) {
+						Rodeur rodeur = new Rodeur();
+						vitalite = rodeur.attaqueSpeciale(joueurs, liste.get(i)
+								.getNom());
+					}
 
 				}
 				if (liste.get(i).getClasse().equals("Mage")) {
-					System.out.println("Classe:   " + liste.get(i).getClasse());
+					// System.out.println("Classe:   " +
+					// liste.get(i).getClasse());
 					Mage mage = new Mage();
 					if (numeroClasse == 1) {
 						vitalite = mage.attaqueBasique(liste.get(y).getNom(),
 								joueurs, liste.get(i).getNom());
 					}
+					if (numeroClasse == 2) {
+						mage = new Mage();
+						vitalite = mage.attaqueSpeciale(joueurs, liste.get(i)
+								.getNom());
+					}
 				}
 
 				y++;
 				i--;
+				// System.out.println("Joueur"+);
 			}
-		} while (vitalite > 0 || vitalite != 0);
+		}
+
 	}
 }
