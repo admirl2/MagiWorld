@@ -19,27 +19,33 @@ public class Guerrier implements Attaque {
 		joueur1.setVie(joueur1.getVie() - vitalitePerdue);
 		tab.put(joueurAdverse, joueurAdverse1);
 		tab.put(joueur, joueur1);
-		// if (joueurAdverse1.getVie() > 0 && joueur1.getVie() > 0) {
-		System.out.println("Joueur " + joueur1.getNumero()
-				+ " utilise Coup de Rage et inflige "
-				+ (2 * joueur1.getForce()) + " domages.");
-		System.out.println("Joueur " + joueurAdverse1.getNumero() + " perd "
-				+ (2 * joueur1.getForce()) + " points de vie");
-		System.out.println("Joueur " + joueur1.getNumero() + " perd "
-				+ vitalitePerdue + " points de vie");
-		// } else {
-		// System.out.println("Joueur " + joueur1.getNumero()
-		// + " utilise Coup de Rage et inflige "
-		// + (2 * joueur1.getForce()) + " domages.");
-		// System.out.println("Joueur " + joueurAdverse1.getNumero()
-		// + " perd " + (2 * joueur1.getForce()) + " points de vie");
-		// System.out.println("Joueur " + joueurAdverse1.getNumero()
-		// + " est mort");
-		// System.out.println("Joueur " + joueur1.getNumero() + " perd "
-		// + vitalitePerdue + " points de vie");
-		// System.out.println("Joueur " + joueurAdverse1.getNumero()
-		// + " a perdu!");
-		// }
+		if (joueurAdverse1.getVie() > 0 && joueur1.getVie() > 0) {
+			System.out.println("Joueur " + joueur1.getNumero()
+					+ " utilise Coup de Rage et inflige "
+					+ (2 * joueur1.getForce()) + " domages.");
+
+			System.out.println("Joueur " + joueurAdverse1.getNumero()
+					+ " perd " + (2 * joueur1.getForce()) + " points de vie");
+
+			System.out.println("Joueur " + joueur1.getNumero() + " perd "
+					+ vitalitePerdue + " points de vie");
+		} else {
+			System.out.println("Joueur " + joueur1.getNumero()
+					+ " utilise Coup de Rage et inflige "
+					+ (2 * joueur1.getForce()) + " domages.");
+
+			System.out.println("Joueur " + joueurAdverse1.getNumero()
+					+ " perd " + (2 * joueur1.getForce()) + " points de vie");
+
+			System.out.println("Joueur " + joueurAdverse1.getNumero()
+					+ " est mort");
+
+			System.out.println("Joueur " + joueur1.getNumero() + " perd "
+					+ vitalitePerdue + " points de vie");
+
+			System.out.println("Joueur " + joueurAdverse1.getNumero()
+					+ " a perdu!");
+		}
 		return vitalite;
 
 	}
@@ -53,23 +59,27 @@ public class Guerrier implements Attaque {
 		vitalite = (joueurAdverse1.getVie() - joueur1.getForce());
 		joueurAdverse1.setVie(vitalite);
 		tab.put(joueurAdverse, joueurAdverse1);
-		// if (joueurAdverse1.getVie() > 0) {
-		System.out.println("Joueur " + joueur1.getNumero()
-				+ " utilise Coup d'Épée et inflige " + joueur1.getForce()
-				+ " domages.");
-		System.out.println("Joueur " + joueurAdverse1.getNumero() + " perd "
-				+ joueur1.getForce() + " points de vie");
-		// } else {
-		// System.out.println("Joueur " + joueur1.getNumero()
-		// + " utilise Coup d'Épée et inflige " + joueur1.getForce()
-		// + " domages.");
-		// System.out.println("Joueur " + joueurAdverse1.getNumero()
-		// + " perd " + joueur1.getForce() + " points de vie");
-		// System.out.println("Joueur " + joueurAdverse1.getNumero()
-		// + " est mort");
-		// System.out.println("Joueur " + joueurAdverse1.getNumero()
-		// + " a perdu!");
-		// }
+		if (joueurAdverse1.getVie() > 0) {
+			System.out.println("Joueur " + joueur1.getNumero()
+					+ " utilise Coup d'Épée et inflige " + joueur1.getForce()
+					+ " domages.");
+
+			System.out.println("Joueur " + joueurAdverse1.getNumero()
+					+ " perd " + joueur1.getForce() + " points de vie");
+		} else {
+			System.out.println("Joueur " + joueur1.getNumero()
+					+ " utilise Coup d'Épée et inflige " + joueur1.getForce()
+					+ " domages.");
+
+			System.out.println("Joueur " + joueurAdverse1.getNumero()
+					+ " perd " + joueur1.getForce() + " points de vie");
+
+			System.out.println("Joueur " + joueurAdverse1.getNumero()
+					+ " est mort");
+
+			System.out.println("Joueur " + joueurAdverse1.getNumero()
+					+ " a perdu!");
+		}
 		return vitalite;
 
 	}

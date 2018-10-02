@@ -28,23 +28,27 @@ public class Mage implements Attaque {
 		vitalite = (joueurAdverse1.getVie() - joueur1.getIntelligence());
 		joueurAdverse1.setVie(vitalite);
 		tab.put(joueurAdverse, joueurAdverse1);
-		// if (joueurAdverse1.getVie() > 0) {
-		System.out.println("Joueur " + joueur1.getNumero()
-				+ " utilise Boule de Feu et inflige "
-				+ joueur1.getIntelligence() + " domages.");
-		System.out.println("Joueur " + joueurAdverse1.getNumero() + " perd "
-				+ joueur1.getIntelligence() + " points de vie");
-		// } else {
-		// System.out.println("Joueur " + joueur1.getNumero()
-		// + " utilise Boule de Feu et inflige "
-		// + joueur1.getIntelligence() + " domages.");
-		// System.out.println("Joueur " + joueurAdverse1.getNumero()
-		// + " perd " + joueur1.getIntelligence() + " points de vie");
-		// System.out.println("Joueur " + joueurAdverse1.getNumero()
-		// + " est mort");
-		// System.out.println("Joueur " + joueurAdverse1.getNumero()
-		// + " a perdu!");
-		// }
+		if (joueurAdverse1.getVie() > 0) {
+			System.out.println("Joueur " + joueur1.getNumero()
+					+ " utilise Boule de Feu et inflige "
+					+ joueur1.getIntelligence() + " domages.");
+
+			System.out.println("Joueur " + joueurAdverse1.getNumero()
+					+ " perd " + joueur1.getIntelligence() + " points de vie");
+		} else {
+			System.out.println("Joueur " + joueur1.getNumero()
+					+ " utilise Boule de Feu et inflige "
+					+ joueur1.getIntelligence() + " domages.");
+
+			System.out.println("Joueur " + joueurAdverse1.getNumero()
+					+ " perd " + joueur1.getIntelligence() + " points de vie");
+
+			System.out.println("Joueur " + joueurAdverse1.getNumero()
+					+ " est mort");
+
+			System.out.println("Joueur " + joueurAdverse1.getNumero()
+					+ " a perdu!");
+		}
 		return vitalite;
 	}
 

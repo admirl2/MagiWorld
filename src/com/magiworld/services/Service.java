@@ -15,8 +15,12 @@ import com.magiworld.interfaces.IService;
 
 public class Service implements IService {
 	public static HashMap<String, Joueur> joueurs = new HashMap();
-	public List code = new ArrayList();
 
+	/**
+	 * La fonction de creation de personnages
+	 * 
+	 * @see creationPersonnage()
+	 */
 	@Override
 	public void creationPersonnage() {
 		// TODO Auto-generated method stub
@@ -106,135 +110,94 @@ public class Service implements IService {
 
 	public void leJeu() {
 		Scanner scanner = new Scanner(System.in);
-		int vitalite = 0;
-		do {
-			for (Map.Entry joueur : joueurs.entrySet()) {
-				Joueur joueurss = (Joueur) joueur.getValue();
-				System.out
-						.println("Joueur "
-								+ joueurss.getNumero()
-								+ " ("
-								+ joueurss.getVie()
-								+ ")"
-								+ " Veuillez choisir votre action(1: Attaque Basique, 2: Attaque Spéciale)");
-				int action = scanner.nextInt();
-				if (action == 1) {
-					if (joueurss.getClasse().equals("Guerrier")) {
-						Guerrier guerrier = new Guerrier();
-						vitalite = guerrier.attaqueBasique("Abracadabra",
-								joueurs, "Woarg");
-						System.out.println("Valeur action : Guerrier");
-						System.out.println("Vitalite: " + vitalite);
-					}
-					if (joueurss.getClasse().equals("Rodeur")) {
-						Rodeur rodeur = new Rodeur();
-						vitalite = rodeur.attaqueBasique("Abracadabra",
-								joueurs, "Woarg");
-						System.out.println("Valeur action : Rodeur");
-						System.out.println("Vitalite: " + vitalite);
-					}
-					if (joueurss.getClasse().equals("Mage")) {
-						Mage mage = new Mage();
-						vitalite = mage.attaqueBasique("Abracadabra", joueurs,
-								"Woarg");
-						System.out.println("Valeur action : Mage");
-						System.out.println("Vitalite: " + vitalite);
-					}
-
-				}
-			}
-		} while (vitalite > 0 || vitalite != 0);
-
-	}
-
-	// private int nouvelleVitalite(String cle) {
-	// int vitalite = 0;
-	// Personnage personnage = joueur.get(cle);
-	// if (personnage != null) {
-	// // personnage.setVie(vie);
-	// }
-	// return vitalite;
-	// }
-
-	public void listing() {
-		Scanner scanner = new Scanner(System.in);
 		List<Joueur> liste = new ArrayList();
 		int numeroClasse = 0;
 		for (Map.Entry entree : joueurs.entrySet()) {
 			Joueur joueur = (Joueur) entree.getValue();
-			// System.out.println("Numero" + joueur.getNumero());
-			// a = scanner.nextInt();
 			liste.add(joueur);
-
 		}
 
 		int vitalite = -1;
-		// boolean vitaliteNull = false;
+		int vitalite1 = 1;
 
-		while (vitalite == -1 || vitalite > 0) {
-			System.out.println("Vitalite premier while " + vitalite);
-			int i = 1;
-			int y = 0;
-			while (i >= 0 && y <= 1) {
-
+		while (vitalite == -1 || vitalite1 > 0) {
+			int premierJoueur = 1;
+			int deuxiemeJoueur = 0;
+			while (premierJoueur >= 0 && deuxiemeJoueur <= 1) {
+				vitalite1 = liste.get(premierJoueur).getVie();
+				if (vitalite1 == 0 || vitalite1 < 0)
+					break;
 				System.out
 						.println("Joueur "
-								+ liste.get(i).getNumero()
+								+ liste.get(premierJoueur).getNumero()
 								+ " ("
-								+ liste.get(i).getVie()
+								+ liste.get(premierJoueur).getVie()
 								+ ")"
 								+ " Veuillez choisir votre action(1: Attaque Basique, 2: Attaque Spéciale)");
-				// System.out.println("Classe:   " + liste.get(i).getClasse());
 				numeroClasse = scanner.nextInt();
-				if (liste.get(i).getClasse().equals("Guerrier")) {
-					// System.out.println("Classe:   " +
-					// liste.get(i).getClasse());
+				if (liste.get(premierJoueur).getClasse().equals("Guerrier")) {
 					Guerrier guerrier = new Guerrier();
 					if (numeroClasse == 1) {
-						vitalite = guerrier.attaqueBasique(liste.get(y)
-								.getNom(), joueurs, liste.get(i).getNom());
-					}
-					if (numeroClasse == 2) {
-						vitalite = guerrier.attaqueSpeciale(liste.get(y)
-								.getNom(), joueurs, liste.get(i).getNom());
-					}
-
-				}
-				if (liste.get(i).getClasse().equals("Rodeur")) {
-					// System.out.println("Classe:   " +
-					// liste.get(i).getClasse());
-					if (numeroClasse == 1) {
-						Rodeur rodeur = new Rodeur();
-						vitalite = rodeur.attaqueBasique(liste.get(y).getNom(),
-								joueurs, liste.get(i).getNom());
-					}
-					if (numeroClasse == 2) {
-						Rodeur rodeur = new Rodeur();
-						vitalite = rodeur.attaqueSpeciale(joueurs, liste.get(i)
+						guerrier.attaqueBasique(liste.get(deuxiemeJoueur)
+								.getNom(), joueurs, liste.get(premierJoueur)
 								.getNom());
 					}
+					if (numeroClasse == 2) {
+						guerrier.attaqueSpeciale(liste.get(deuxiemeJoueur)
+								.getNom(), joueurs, liste.get(premierJoueur)
+								.getNom());
+					}
+				}
+				if (liste.get(premierJoueur).getClasse().equals("Rodeur")) {
+					if (numeroClasse == 1) {
+						Rodeur rodeur = new Rodeur();
+						vitalite = rodeur.attaqueBasique(
+								liste.get(deuxiemeJoueur).getNom(), joueurs,
+								liste.get(premierJoueur).getNom());
+					}
+					if (numeroClasse == 2) {
+						Rodeur rodeur = new Rodeur();
+						vitalite = rodeur.attaqueSpeciale(joueurs,
+								liste.get(premierJoueur).getNom());
+					}
 
 				}
-				if (liste.get(i).getClasse().equals("Mage")) {
-					// System.out.println("Classe:   " +
-					// liste.get(i).getClasse());
+				if (liste.get(premierJoueur).getClasse().equals("Mage")) {
 					Mage mage = new Mage();
 					if (numeroClasse == 1) {
-						vitalite = mage.attaqueBasique(liste.get(y).getNom(),
-								joueurs, liste.get(i).getNom());
+						vitalite = mage.attaqueBasique(liste
+								.get(deuxiemeJoueur).getNom(), joueurs, liste
+								.get(premierJoueur).getNom());
 					}
 					if (numeroClasse == 2) {
-						mage = new Mage();
-						vitalite = mage.attaqueSpeciale(joueurs, liste.get(i)
-								.getNom());
+						vitalite = mage.attaqueSpeciale(joueurs,
+								liste.get(premierJoueur).getNom());
 					}
 				}
 
-				y++;
-				i--;
-				// System.out.println("Joueur"+);
+				deuxiemeJoueur++;
+				premierJoueur--;
 			}
 		}
 
 	}
+
+	// public void lesAttaquesGuerrier(int premierJoueur, int deuxiemeJoueur,
+	// int numeroClasse) {
+	// // List<Joueur> liste = new ArrayList();
+	// for (Map.Entry entree : joueurs.entrySet()) {
+	// Joueur joueur = (Joueur) entree.getValue();
+	// liste.add(joueur);
+	// }
+	//
+	// }
+	//
+	// public void lesAttaquesMage(int premierJoueur, int deuxiemeJoueur,
+	// int numeroClasse) {
+	// for (Map.Entry entree : joueurs.entrySet()) {
+	// Joueur joueur = (Joueur) entree.getValue();
+	// liste.add(joueur);
+	// }
+	//
+	// }
 }

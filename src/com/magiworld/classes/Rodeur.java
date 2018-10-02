@@ -36,16 +36,20 @@ public class Rodeur implements Attaque {
 			System.out.println("Joueur " + joueur1.getNumero()
 					+ " utilise Tir à l'Arc et inflige " + joueur1.getAgilite()
 					+ " domages.");
+
 			System.out.println("Joueur " + joueurAdverse1.getNumero()
 					+ " perd " + joueur1.getAgilite() + " points de vie");
 		} else {
 			System.out.println("Joueur " + joueur1.getNumero()
 					+ " utilise Tir à l'Arc et inflige " + joueur1.getAgilite()
 					+ " domages.");
+
 			System.out.println("Joueur " + joueurAdverse1.getNumero()
 					+ " perd " + joueur1.getAgilite() + " points de vie");
+
 			System.out.println("Joueur " + joueurAdverse1.getNumero()
 					+ " est mort");
+
 			System.out.println("Joueur " + joueurAdverse1.getNumero()
 					+ " a perdu!");
 		}

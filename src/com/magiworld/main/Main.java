@@ -7,8 +7,7 @@ public class Main {
 	public static void main(String[] arg) {
 		Service service = new Service();
 		service.creationPersonnage();
-		// service.leJeu();
-		service.listing();
+		service.leJeu();
 	}
 
 }
