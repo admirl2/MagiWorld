@@ -13,13 +13,19 @@ import com.magiworld.classes.Personnage;
 import com.magiworld.classes.Rodeur;
 import com.magiworld.interfaces.IService;
 
+/**
+ * 
+ * @author Adelain EUGENE
+ * @version 1.0
+ *
+ */
 public class Service implements IService {
 	public static HashMap<String, Joueur> joueurs = new HashMap();
 
 	/**
 	 * La fonction de creation de personnages
 	 * 
-	 * @see creationPersonnage()
+	 * 
 	 */
 	@Override
 	public void creationPersonnage() {
@@ -80,6 +86,12 @@ public class Service implements IService {
 		}
 	}
 
+	/**
+	 * Methode permettant de distinguer les personnage
+	 * 
+	 * @param numeroPersonnage
+	 *            le numero saisi par le joueur
+	 */
 	@Override
 	public String distinguerPersonnage(int numeroPersonnage) {
 		// TODO Auto-generated method stub
