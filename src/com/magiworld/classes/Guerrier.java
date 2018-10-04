@@ -4,8 +4,24 @@ import java.util.HashMap;
 
 import com.magiworld.interfaces.Attaque;
 
+/**
+ * 
+ * @author Adelain EUGENE
+ * @version 1.0
+ *
+ */
 public class Guerrier implements Attaque {
-
+	/**
+	 * Attaque spéciale du personnage Guerrier
+	 * 
+	 * @param joueurAdverse
+	 *            Joueur qui subit l'attaque
+	 * @param tab
+	 *            tabeau qui contient les joueurs
+	 * @param joueur
+	 *            Joueur qui fait l'attaque
+	 * @return la vitalité du joueur qui subit l'attaque
+	 */
 	@Override
 	public int attaqueSpeciale(String joueurAdverse, HashMap tab, String joueur) {
 		// TODO Auto-generated method stub
@@ -50,6 +66,13 @@ public class Guerrier implements Attaque {
 
 	}
 
+	/**
+	 * Attaque basique du personnage Guerrier
+	 * 
+	 * @param joueurAdverse
+	 *            , tab, joueur
+	 * @return la vitalité du joueur qui subit l'attaque
+	 */
 	@Override
 	public int attaqueBasique(String joueurAdverse, HashMap tab, String joueur) {
 		// TODO Auto-generated method stub

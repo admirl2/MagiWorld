@@ -1,5 +1,11 @@
 package com.magiworld.classes;
 
+/**
+ * 
+ * @author Adelain EUGENE
+ * @version 1.0
+ *
+ */
 public class Personnage {
 	private String classe;
 	private int niveau;

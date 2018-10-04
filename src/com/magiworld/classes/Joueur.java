@@ -1,6 +1,16 @@
 package com.magiworld.classes;
 
+/**
+ * cette classe représente les joueurs
+ * 
+ * @author Adelain EUGENE
+ * @version 1.0
+ *
+ */
 public class Joueur extends Personnage {
+	/**
+	 * Le attributs du joueur en question
+	 */
 	private int numero;
 	private String nom;
 

@@ -14,6 +14,7 @@ import com.magiworld.classes.Rodeur;
 import com.magiworld.interfaces.IService;
 
 /**
+ * Le deroulement du jeu
  * 
  * @author Adelain EUGENE
  * @version 1.0
@@ -110,6 +111,13 @@ public class Service implements IService {
 		return personnage;
 	}
 
+	/**
+	 * La somme de Force, d'Agilité et d'Intelligence doit etre égal au niveau
+	 * du joueur
+	 * 
+	 * @param personnage
+	 * @return
+	 */
 	private boolean totalForceAgiliteIntelligence(Personnage personnage) {
 		boolean validation = false;
 		if (personnage.getNiveau() >= (personnage.getForce()
@@ -120,10 +128,17 @@ public class Service implements IService {
 
 	}
 
+	/**
+	 * La fonction des différentes attaques.
+	 */
+	@Override
 	public void leJeu() {
 		Scanner scanner = new Scanner(System.in);
 		List<Joueur> liste = new ArrayList();
 		int numeroClasse = 0;
+		/**
+		 * Les élément de HashMap sont ajouter dans une liste (ArrayList)
+		 */
 		for (Map.Entry entree : joueurs.entrySet()) {
 			Joueur joueur = (Joueur) entree.getValue();
 			liste.add(joueur);
